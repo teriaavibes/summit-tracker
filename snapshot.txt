@@ -16,13 +16,13 @@ TEXT: Trademarks
 TEXT: Privacy Statement
 TEXT: Terms of use
 TEXT: Your Privacy Choices
-TEXT: © 2026 Microsoft
+TEXT: © YEAR Microsoft
 TEXT: Contact Event Team
 TEXT: Trademarks
 TEXT: Privacy Statement
 TEXT: Terms of use
 TEXT: Your Privacy Choices
-TEXT: © 2026 Microsoft
+TEXT: © YEAR Microsoft
 A:  | https://www.microsoft.com
 A: Contact Event Team | mailto:mvpga@microsoft.com
 A: Help | javascript:void(0)

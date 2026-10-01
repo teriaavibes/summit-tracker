@@ -81,6 +81,7 @@ def main():
     p.feed(html)
     p.flush()
 
+    p.lines = [re.sub(r"©\s*\d{4}", "© YEAR", l) for l in p.lines]
     text = "\n".join(p.lines)
     if "MVP Summit" not in text or len(p.lines) < 3:
         sys.exit("Fetched page looks wrong (blocked or error page?); not touching state.")
