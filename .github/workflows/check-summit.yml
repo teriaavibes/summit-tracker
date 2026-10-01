@@ -1,0 +1,60 @@
+name: Check MVP Summit registration
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: check-summit
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check page
+        id: check
+        run: python3 check.py
+
+      - name: Open "registration open" issue (once)
+        if: steps.check.outputs.opened == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          existing=$(gh issue list --state all --label registration-open --json number --jq length)
+          if [ "$existing" = "0" ]; then
+            gh label create registration-open --color 0E8A16 --force
+            gh issue create \
+              --title "MVP Summit registration appears to be OPEN" \
+              --label registration-open \
+              --body-file issue_body.md
+          else
+            echo "registration-open issue already exists; skipping"
+          fi
+
+      - name: Open "page changed" issue
+        if: steps.check.outputs.changed == 'true' && steps.check.outputs.first_run == 'false' && steps.check.outputs.opened != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh label create page-changed --color FBCA04 --force
+          gh issue create \
+            --title "Summit page content changed ($(date -u +%Y-%m-%d\ %H:%M) UTC)" \
+            --label page-changed \
+            --body-file issue_body.md
+
+      - name: Save new snapshot
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add snapshot.txt
+          git commit -m "Update page snapshot"
+          git push

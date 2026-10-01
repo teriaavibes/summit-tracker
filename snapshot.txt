@@ -1,0 +1,36 @@
+TEXT: Skip to main content
+TEXT: MVP Summit
+TEXT: Help
+TEXT: Global navigation
+TEXT: MVP Summit
+TEXT: MVP Summit
+TEXT: March 16-18, 2027
+TEXT: The intersection of connection, learning, and ideas.
+TEXT: Welcome
+TEXT: The next MVP Summit will take place March 16-18, 2027.
+TEXT: The MVP Summit is an exclusive multi-day event for all active MVPs (Most Valuable Professionals) and RDs (Regional Directors). MVPs and RDs must have a signed Non-Disclosure Agreement on file in order to participate in the event. The MVP Summit features a large catalog of in-depth technical discussions that emphasizes two-way engagement, along with other community focused opportunities.
+TEXT: Registration coming soon.
+TEXT: All content is shared under NDA
+TEXT: Contact Event Team
+TEXT: Trademarks
+TEXT: Privacy Statement
+TEXT: Terms of use
+TEXT: Your Privacy Choices
+TEXT: © 2026 Microsoft
+TEXT: Contact Event Team
+TEXT: Trademarks
+TEXT: Privacy Statement
+TEXT: Terms of use
+TEXT: Your Privacy Choices
+TEXT: © 2026 Microsoft
+A:  | https://www.microsoft.com
+A: Contact Event Team | mailto:mvpga@microsoft.com
+A: Help | javascript:void(0)
+A: MVP Summit | /en-us
+A: Privacy Statement | https://go.microsoft.com/fwlink/?LinkID=521839
+A: Skip to main content | #main
+A: Terms of use | https://www.microsoft.com/en-us/legal/intellectualproperty/copyright/default
+A: Trademarks | https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks/usage/general
+A: Your Privacy Choices | https://aka.ms/YourCaliforniaPrivacyChoices
+BUTTON:  | 
+BUTTON: Global navigation | 
