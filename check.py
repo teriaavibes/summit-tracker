@@ -20,6 +20,10 @@ SNAPSHOT = "snapshot.txt"
 SKIP_TAGS = {"script", "style", "noscript", "svg", "head"}
 BLOCK_TAGS = {"p", "div", "h1", "h2", "h3", "h4", "h5", "h6", "li", "br", "section", "main", "footer", "header", "nav"}
 REGISTER_RE = re.compile(r"regist", re.I)
+# Seen on the live page (Oct 2026): the "next MVP Summit will take place" intro becomes
+# "This year's event takes place ...", and a Sign In link appears next to the Register button.
+LIVE_INTRO_RE = re.compile(r"this year.s event takes place", re.I)
+SIGNIN_RE = re.compile(r"/auth/sign-?in", re.I)
 
 
 class Extractor(HTMLParser):
@@ -92,9 +96,15 @@ def main():
     reasons = []
     if "registration coming soon" not in text.lower():
         reasons.append('"Registration coming soon." text is gone')
+    if LIVE_INTRO_RE.search(text):
+        reasons.append('intro now reads "This year\'s event takes place ..."')
     for kind, t, ref in p.controls:
         if REGISTER_RE.search(t) or REGISTER_RE.search(ref):
-            reasons.append(f"registration {kind} found: '{t}' -> {ref}")
+            label = "link" if kind == "a" else kind
+            reasons.append(f"registration {label} found: '{t}' -> {ref}")
+    # Supporting evidence only: sign-in alone is not proof that registration is open.
+    hints = [f"sign-in {'link' if k == 'a' else k} present: '{t}' -> {ref}"
+             for k, t, ref in p.controls if SIGNIN_RE.search(ref)]
 
     old = open(SNAPSHOT, encoding="utf-8").read() if os.path.exists(SNAPSHOT) else None
     changed = old is not None and old != snapshot
@@ -111,6 +121,8 @@ def main():
         f.write(f"Page: {URL}\n\n")
         if reasons:
             f.write("**Registration signals:**\n" + "\n".join(f"- {r}" for r in reasons) + "\n\n")
+            if hints:
+                f.write("**Supporting signals:**\n" + "\n".join(f"- {h}" for h in sorted(set(hints))) + "\n\n")
         if diff:
             f.write("**Changes since last snapshot:**\n```diff\n" + diff + "```\n")
 
