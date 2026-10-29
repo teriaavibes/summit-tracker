@@ -1,8 +1,10 @@
 name: Check MVP Summit registration
 
 on:
-  schedule:
-    - cron: "*/15 * * * *"
+  # SUSPENDED: 2027 registration opened 2026-10-29 (see issue #1), so the schedule is off.
+  # To resume next cycle (around September 2027), uncomment the schedule below.
+  # schedule:
+  #   - cron: "*/15 * * * *"
   workflow_dispatch:
 
 permissions:
@@ -28,7 +30,9 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          existing=$(gh issue list --state all --label registration-open --json number --jq length)
+          year=$(date -u +%Y)
+          existing=$(gh issue list --state all --label registration-open --limit 100 \
+            --json createdAt --jq "[.[] | select(.createdAt | startswith(\"$year\"))] | length")
           if [ "$existing" = "0" ]; then
             gh label create registration-open --color 0E8A16 --force
             gh issue create \
@@ -36,7 +40,7 @@ jobs:
               --label registration-open \
               --body-file issue_body.md
           else
-            echo "registration-open issue already exists; skipping"
+            echo "registration-open issue for $year already exists; skipping"
           fi
 
       - name: Open "page changed" issue
