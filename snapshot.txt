@@ -1,15 +1,17 @@
 TEXT: Skip to main content
 TEXT: MVP Summit
 TEXT: Help
+TEXT: Sign In
 TEXT: Global navigation
 TEXT: MVP Summit
+TEXT: Sign in
 TEXT: MVP Summit
 TEXT: March 16-18, 2027
 TEXT: The intersection of connection, learning, and ideas.
 TEXT: Welcome
-TEXT: The next MVP Summit will take place March 16-18, 2027.
+TEXT: This year’s event takes place March 16-18, 2027 at the Microsoft Redmond campus and online!
 TEXT: The MVP Summit is an exclusive multi-day event for all active MVPs (Most Valuable Professionals) and RDs (Regional Directors). MVPs and RDs must have a signed Non-Disclosure Agreement on file in order to participate in the event. The MVP Summit features a large catalog of in-depth technical discussions that emphasizes two-way engagement, along with other community focused opportunities.
-TEXT: Registration coming soon.
+TEXT: Register
 TEXT: All content is shared under NDA
 TEXT: Contact Event Team
 TEXT: Trademarks
@@ -28,6 +30,9 @@ A: Contact Event Team | mailto:mvpga@microsoft.com
 A: Help | javascript:void(0)
 A: MVP Summit | /en-us
 A: Privacy Statement | https://go.microsoft.com/fwlink/?LinkID=521839
+A: Register | /en-us/register
+A: Sign In | /en-us/auth/sign-in
+A: Sign in | /en-us/auth/sign-in
 A: Skip to main content | #main
 A: Terms of use | https://www.microsoft.com/en-us/legal/intellectualproperty/copyright/default
 A: Trademarks | https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks/usage/general
